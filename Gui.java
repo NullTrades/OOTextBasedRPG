@@ -9,11 +9,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class gui implements ActionListener {
+public class Gui implements ActionListener {
     int count = 0;
     JLabel label;
 
-    public gui() {
+    public Gui() {
 
         JFrame frame = new JFrame(); // Creates Jframe object
 
@@ -36,7 +36,7 @@ public class gui implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new gui();
+        new Gui();
 
     }
 
