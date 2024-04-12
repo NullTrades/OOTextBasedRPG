@@ -17,8 +17,8 @@ import java.io.File;
 public class Gui implements ActionListener {
     static JFrame frame;
     static Container container;
-    static JPanel titlePanel, startPanel, gamePanel, buttonPanel;
-    static JLabel titleLabel;
+    static JPanel titlePanel, startPanel, gamePanel, buttonPanel, hpPanel, weaponPanel, levelPanel;
+    static JLabel titleLabel, hpLabel, weaponLabel, levelLabel;
     static JButton startButton, buttonOne, buttonTwo, buttonThree, buttonFour;
     static JTextArea textArea;
     // Set custom color
@@ -109,6 +109,33 @@ public class Gui implements ActionListener {
         buttonPanel.add(buttonTwo);
         buttonPanel.add(buttonThree);
         buttonPanel.add(buttonFour);
+
+        hpPanel = new JPanel();
+        weaponPanel = new JPanel();
+        levelPanel = new JPanel();
+        hpPanel.setBackground(Color.BLACK);
+        weaponPanel.setBackground(Color.BLACK);
+        levelPanel.setBackground(Color.BLACK);
+        hpPanel.setBounds(20, 0, 100, 50);
+        weaponPanel.setBounds(760, 0, 120, 50);
+        levelPanel.setBounds(330, 0, 200, 50);
+
+        container.add(hpPanel);
+        container.add(weaponPanel);
+        container.add(levelPanel);
+
+        hpLabel = new JLabel("HP: ");
+        weaponLabel = new JLabel("WEAPON: ");
+        levelLabel = new JLabel("LEVEL: ");
+        hpLabel.setForeground(customColor);
+        weaponLabel.setForeground(customColor);
+        levelLabel.setForeground(customColor);
+        hpLabel.setFont(standardFontTwo);
+        weaponLabel.setFont(standardFontTwo);
+        levelLabel.setFont(standardFontTwo);
+        hpPanel.add(hpLabel);
+        weaponPanel.add(weaponLabel);
+        levelPanel.add(levelLabel);
 
     }
 
