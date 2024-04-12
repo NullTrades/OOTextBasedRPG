@@ -7,11 +7,10 @@
 
 public class Game {
 
-    public static void main(String[] args){
-        System.out.println("Hrllo");
+    static Gui gui = new Gui();
 
-		
-	
-	}
+    public static void main(String[] args) {
+        gui.titleScreen();
+    }
 
 }
