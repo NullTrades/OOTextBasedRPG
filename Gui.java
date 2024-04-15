@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.GridLayout;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,38 +18,46 @@ import java.io.File;
 public class Gui implements ActionListener {
     static JFrame frame;
     static Container container;
-    static JPanel titlePanel, startPanel, gamePanel, buttonPanel, hpPanel, weaponPanel, levelPanel;
-    static JLabel titleLabel, hpLabel, weaponLabel, levelLabel;
+    static JPanel titlePanel, startPanel, gamePanel, buttonPanel, infoPanel;
+    static JLabel titleLabel, hpLabel, hpVauleLabel, weaponNamLabel, weaponLabel, locationNamLabel, locationLabel;
     static JButton startButton, buttonOne, buttonTwo, buttonThree, buttonFour;
     static JTextArea textArea;
     // Set custom color
-    static Color customColor = new Color(60, 9, 108);
+    static Color purpleColor = new Color(60, 9, 108);
+
     static Font customFont = loadFont("BreatheFireIii-PKLOB.ttf");
     static Font biggerTitleFont = customFont.deriveFont(Font.BOLD, 200);
     static Font standardFont = customFont.deriveFont(Font.BOLD, 40);
     static Font standardFontTwo = customFont.deriveFont(Font.BOLD, 25);
     static Font standardFontThree = customFont.deriveFont(Font.BOLD, 37);
+    static Font standardFontFour = customFont.deriveFont(Font.ITALIC, 25);
+    static int playerHp;
+    static String weaponName;
+    static String locationName;
 
-    public static void titleScreen() {
+    public static void gameScreen(Game.ActionPerformed actionPerformed) {
 
+        // Creating new Frame
         frame = new JFrame();
         frame.setSize(1000, 800);
         frame.getContentPane().setBackground(Color.black);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         container = frame.getContentPane();
 
+        // Creating new Title panel
         titlePanel = new JPanel();
         titlePanel.setBounds(200, 100, 600, 210);
         titlePanel.setBackground(Color.black);
         container.add(titlePanel);
-        titleLabel = new JLabel("Title");
 
-        titleLabel.setForeground(customColor);
+        // Creating new Title Lable
+        titleLabel = new JLabel("Title");
+        titleLabel.setForeground(purpleColor);
         titleLabel.setFont(biggerTitleFont);
         titlePanel.add(titleLabel);
 
+        // Creating new Start button and panel
         startPanel = new JPanel();
         startPanel.setBounds(375, 550, 250, 70);
         startPanel.setBackground(Color.black);
@@ -56,91 +65,129 @@ public class Gui implements ActionListener {
 
         startButton = new JButton("Start");
         startButton.setBackground(Color.black);
-        startButton.setForeground(customColor);
+        startButton.setForeground(purpleColor);
         startButton.setFont(standardFont);
         startButton.addActionListener(new Gui());
+        startButton.setFocusPainted(false);
+        startButton.addActionListener(actionPerformed);
+        startButton.setActionCommand("start");
         startPanel.add(startButton);
-        frame.setVisible(true);
-    }
 
-    public static void gameScreen() {
+        // Sets visability to show
+        frame.setVisible(true);
+
+        // Sets title screen option to not show
         titlePanel.setVisible(false);
         startPanel.setVisible(false);
+
+        // Creating new game panel
         gamePanel = new JPanel();
         gamePanel.setBounds(180, 150, 620, 250);
         gamePanel.setBackground(Color.black);
         container.add(gamePanel);
 
+        // Creating a text window and addding to game panel
         textArea = new JTextArea(
                 "Lorem ipsum dolar...");
         textArea.setBounds(180, 150, 620, 250);
         textArea.setBackground(Color.black);
-        textArea.setForeground(customColor);
+        textArea.setForeground(purpleColor);
         textArea.setFont(standardFontTwo);
         textArea.setLineWrap(true);
         gamePanel.add(textArea);
 
+        // Creating a buttone panel for the four buttons
         buttonPanel = new JPanel();
         buttonPanel.setBounds(150, 550, 700, 125);
         buttonPanel.setBackground(Color.black);
+        buttonPanel.setLayout(new GridLayout(1, 4));
         container.add(buttonPanel);
 
+        // Creating the four buttons and adding to the button panel
         buttonOne = new JButton("Option 1");
         buttonOne.setBackground(Color.black);
-        buttonOne.setForeground(customColor);
+        buttonOne.setForeground(purpleColor);
         buttonOne.setFont(standardFontThree);
+        buttonOne.addActionListener(actionPerformed);
+        buttonOne.setActionCommand("choiceOne");
+        buttonOne.setFocusPainted(false);
+
         buttonTwo = new JButton("Option 2");
         buttonTwo.setBackground(Color.black);
-        buttonTwo.setForeground(customColor);
+        buttonTwo.setForeground(purpleColor);
         buttonTwo.setFont(standardFontThree);
+        buttonTwo.addActionListener(actionPerformed);
+        buttonTwo.setActionCommand("choiceTwo");
+        buttonTwo.setFocusPainted(false);
+
         buttonThree = new JButton("Option 3");
         buttonThree.setBackground(Color.black);
-        buttonThree.setForeground(customColor);
+        buttonThree.setForeground(purpleColor);
         buttonThree.setFont(standardFontThree);
+        buttonThree.addActionListener(actionPerformed);
+        buttonThree.setActionCommand("choiceThree");
+        buttonThree.setFocusPainted(false);
+
         buttonFour = new JButton("Option 4");
         buttonFour.setBackground(Color.black);
-        buttonFour.setForeground(customColor);
+        buttonFour.setForeground(purpleColor);
         buttonFour.setFont(standardFontThree);
+        buttonFour.addActionListener(actionPerformed);
+        buttonFour.setActionCommand("choiceFour");
+        buttonFour.setFocusPainted(false);
 
         buttonPanel.add(buttonOne);
         buttonPanel.add(buttonTwo);
         buttonPanel.add(buttonThree);
         buttonPanel.add(buttonFour);
 
-        hpPanel = new JPanel();
-        weaponPanel = new JPanel();
-        levelPanel = new JPanel();
-        hpPanel.setBackground(Color.BLACK);
-        weaponPanel.setBackground(Color.BLACK);
-        levelPanel.setBackground(Color.BLACK);
-        hpPanel.setBounds(20, 0, 100, 50);
-        weaponPanel.setBounds(760, 0, 120, 50);
-        levelPanel.setBounds(330, 0, 200, 50);
+        // Creating an info panel
+        infoPanel = new JPanel();
+        infoPanel.setBackground(Color.black);
+        infoPanel.setBounds(50, 25, 900, 50);
+        infoPanel.setLayout(new GridLayout(1, 6));
+        container.add(infoPanel);
 
-        container.add(hpPanel);
-        container.add(weaponPanel);
-        container.add(levelPanel);
-
+        // Creating values for the info panel and adding them
         hpLabel = new JLabel("HP: ");
+        hpVauleLabel = new JLabel();
         weaponLabel = new JLabel("WEAPON: ");
-        levelLabel = new JLabel("LEVEL: ");
-        hpLabel.setForeground(customColor);
-        weaponLabel.setForeground(customColor);
-        levelLabel.setForeground(customColor);
+        weaponNamLabel = new JLabel();
+        locationLabel = new JLabel("LOCATION: ");
+        locationNamLabel = new JLabel();
+
+        hpLabel.setForeground(purpleColor);
+        hpVauleLabel.setForeground(Color.WHITE);
+        weaponLabel.setForeground(purpleColor);
+        weaponNamLabel.setForeground(Color.WHITE);
+        locationLabel.setForeground(purpleColor);
+        locationNamLabel.setForeground(Color.WHITE);
+
         hpLabel.setFont(standardFontTwo);
+        hpVauleLabel.setFont(standardFontFour);
         weaponLabel.setFont(standardFontTwo);
-        levelLabel.setFont(standardFontTwo);
-        hpPanel.add(hpLabel);
-        weaponPanel.add(weaponLabel);
-        levelPanel.add(levelLabel);
+        weaponNamLabel.setFont(standardFontFour);
+        locationLabel.setFont(standardFontTwo);
+        locationNamLabel.setFont(standardFontFour);
+
+        infoPanel.add(hpLabel);
+        infoPanel.add(hpVauleLabel);
+        infoPanel.add(locationLabel);
+        infoPanel.add(locationNamLabel);
+        infoPanel.add(weaponLabel);
+        infoPanel.add(weaponNamLabel);
+        // Calls setup method
+        setup();
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        if (event.getSource() == startButton) {
-            gameScreen();
-        }
+    public static void setup() {
+        playerHp = 25;
+        hpVauleLabel.setText("" + playerHp);
+        weaponName = " ";
+        weaponNamLabel.setText(weaponName);
+        locationName = "Start";
+        locationNamLabel.setText(locationName);
     }
 
     private static Font loadFont(String filename) {
@@ -154,6 +201,12 @@ public class Gui implements ActionListener {
             // Handle the exception (e.g., display an error message)
         }
         return font;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
     }
 
 }
