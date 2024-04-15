@@ -29,10 +29,6 @@ public class Gui implements ActionListener {
     static Font standardFontTwo = customFont.deriveFont(Font.BOLD, 25);
     static Font standardFontThree = customFont.deriveFont(Font.BOLD, 37);
 
-    public static void main(String[] args) {
-        titleScreen();
-    }
-
     public static void titleScreen() {
 
         frame = new JFrame();
@@ -40,7 +36,7 @@ public class Gui implements ActionListener {
         frame.getContentPane().setBackground(Color.black);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+
         container = frame.getContentPane();
 
         titlePanel = new JPanel();
@@ -64,6 +60,7 @@ public class Gui implements ActionListener {
         startButton.setFont(standardFont);
         startButton.addActionListener(new Gui());
         startPanel.add(startButton);
+        frame.setVisible(true);
     }
 
     public static void gameScreen() {
