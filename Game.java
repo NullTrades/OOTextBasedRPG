@@ -19,10 +19,12 @@ public class Game {
     }
 
     public Game() {
-        Gui.gameScreen(new ActionPerformed());
+        Gui.titleScreen(new ActionPerformed());
+        ;
+
     }
 
-    public void titleScreen() {
+    public void totitleScreen() {
         gui.titlePanel.setVisible(true);
         gui.startPanel.setVisible(true);
 

@@ -35,7 +35,7 @@ public class Gui implements ActionListener {
     static String weaponName;
     static String locationName;
 
-    public static void gameScreen(Game.ActionPerformed actionPerformed) {
+    public static void titleScreen(Game.ActionPerformed actionPerformed) {
 
         // Creating new Frame
         frame = new JFrame();
@@ -74,7 +74,12 @@ public class Gui implements ActionListener {
         startPanel.add(startButton);
 
         // Sets visability to show
+
         frame.setVisible(true);
+        gameScreen();
+    }
+
+    public static void gameScreen() {
 
         // Sets title screen option to not show
         titlePanel.setVisible(false);
