@@ -12,6 +12,8 @@ public class Game {
 
     ActionPerformed actionPerformed = new ActionPerformed();
 
+    private Player player;
+    private boolean gameRunning;
     static Gui gui = new Gui();
 
     public static void main(String[] args) {
@@ -19,12 +21,10 @@ public class Game {
     }
 
     public Game() {
-        Gui.titleScreen(new ActionPerformed());
-        ;
-
+        Gui.gameScreen(new ActionPerformed());
     }
 
-    public void totitleScreen() {
+    public void titleScreen() {
         gui.titlePanel.setVisible(true);
         gui.startPanel.setVisible(true);
 
