@@ -7,16 +7,23 @@
 
 public class Game {
 
+    private Player player;
+    private boolean gameRunning;
     static Gui gui = new Gui();
 
     public static void main(String[] args) {
-
-        gui.gameScreen();
+        new Game();
     }
 
-    // public void totitleScreen() {
-    // gui.titlePanel.setVisible(true);
-    // gui.startPanel.setVisible(true);
+    public Game() {
+        Gui.titleScreen(new ActionPerformed());
+        ;
+
+    }
+
+    public void totitleScreen() {
+        gui.titlePanel.setVisible(true);
+        gui.startPanel.setVisible(true);
 
     // gui.gamePanel.setVisible(false);
     // gui.infoPanel.setVisible(false);
