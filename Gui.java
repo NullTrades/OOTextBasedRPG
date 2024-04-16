@@ -36,10 +36,10 @@ public class Gui implements ActionListener {
     static String locationName;
 
     public static void main(String[] args) {
-        gameScreen();
+        // gameScreen();
     }
 
-    public static void titleScreen(Game.ActionPerformed actionPerformed) {
+    public static void gameScreen() {
 
         // Creating new Frame
         frame = new JFrame();
@@ -47,13 +47,12 @@ public class Gui implements ActionListener {
         frame.getContentPane().setBackground(Color.black);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        container = frame.getContentPane();
 
         // Creating new Title panel
         titlePanel = new JPanel();
         titlePanel.setBounds(200, 100, 600, 210);
         titlePanel.setBackground(Color.black);
-        container.add(titlePanel);
+        frame.add(titlePanel);
 
         // Creating new Title Lable
         titleLabel = new JLabel("Title");
@@ -65,35 +64,29 @@ public class Gui implements ActionListener {
         startPanel = new JPanel();
         startPanel.setBounds(375, 550, 250, 70);
         startPanel.setBackground(Color.black);
-        container.add(startPanel);
+        frame.add(startPanel);
 
         startButton = new JButton("Start");
         startButton.setBackground(Color.black);
         startButton.setForeground(purpleColor);
         startButton.setFont(standardFont);
         startButton.addActionListener(new Gui());
+        startButton.setActionCommand("Start");
         startButton.setFocusPainted(false);
-        startButton.addActionListener(actionPerformed);
-        startButton.setActionCommand("start");
         startPanel.add(startButton);
 
         // Sets visability to show
+        toTitleScreen();
 
-        frame.setVisible(true);
+        // // Sets title screen option to not show
+        // titlePanel.setVisible(false);
+        // startPanel.setVisible(false);
 
-    }
-
-    public static void gameScreen() {
-
-        // Sets title screen option to not show
-        titlePanel.setVisible(false);
-        startPanel.setVisible(false);
-
-        // Creating new game panel
+        // // Creating new game panel
         gamePanel = new JPanel();
         gamePanel.setBounds(180, 150, 620, 250);
         gamePanel.setBackground(Color.black);
-        container.add(gamePanel);
+        frame.add(gamePanel);
 
         // Creating a text window and addding to game panel
         textArea = new JTextArea(
@@ -103,6 +96,8 @@ public class Gui implements ActionListener {
         textArea.setForeground(purpleColor);
         textArea.setFont(standardFontTwo);
         textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        textArea.setEditable(false);
         gamePanel.add(textArea);
 
         // Creating a buttone panel for the four buttons
@@ -110,39 +105,31 @@ public class Gui implements ActionListener {
         buttonPanel.setBounds(150, 550, 700, 125);
         buttonPanel.setBackground(Color.black);
         buttonPanel.setLayout(new GridLayout(1, 4));
-        container.add(buttonPanel);
+        frame.add(buttonPanel);
 
         // Creating the four buttons and adding to the button panel
         buttonOne = new JButton("Option 1");
         buttonOne.setBackground(Color.black);
         buttonOne.setForeground(purpleColor);
         buttonOne.setFont(standardFontThree);
-        // buttonOne.addActionListener(actionPerformed);
-        buttonOne.setActionCommand("choiceOne");
         buttonOne.setFocusPainted(false);
 
         buttonTwo = new JButton("Option 2");
         buttonTwo.setBackground(Color.black);
         buttonTwo.setForeground(purpleColor);
         buttonTwo.setFont(standardFontThree);
-        // buttonTwo.addActionListener(actionPerformed);
-        buttonTwo.setActionCommand("choiceTwo");
         buttonTwo.setFocusPainted(false);
 
         buttonThree = new JButton("Option 3");
         buttonThree.setBackground(Color.black);
         buttonThree.setForeground(purpleColor);
         buttonThree.setFont(standardFontThree);
-        // buttonThree.addActionListener(actionPerformed);
-        buttonThree.setActionCommand("choiceThree");
         buttonThree.setFocusPainted(false);
 
         buttonFour = new JButton("Option 4");
         buttonFour.setBackground(Color.black);
         buttonFour.setForeground(purpleColor);
         buttonFour.setFont(standardFontThree);
-        // buttonFour.addActionListener(actionPerformed);
-        buttonFour.setActionCommand("choiceFour");
         buttonFour.setFocusPainted(false);
 
         buttonPanel.add(buttonOne);
@@ -150,12 +137,12 @@ public class Gui implements ActionListener {
         buttonPanel.add(buttonThree);
         buttonPanel.add(buttonFour);
 
-        // Creating an info panel
+        // // Creating an info panel
         infoPanel = new JPanel();
         infoPanel.setBackground(Color.black);
         infoPanel.setBounds(50, 25, 900, 50);
         infoPanel.setLayout(new GridLayout(1, 6));
-        container.add(infoPanel);
+        frame.add(infoPanel);
 
         // Creating values for the info panel and adding them
         hpLabel = new JLabel("HP: ");
@@ -185,7 +172,6 @@ public class Gui implements ActionListener {
         infoPanel.add(locationNamLabel);
         infoPanel.add(weaponLabel);
         infoPanel.add(weaponNamLabel);
-        // Calls setup method
         setup();
 
     }
@@ -212,10 +198,31 @@ public class Gui implements ActionListener {
         return font;
     }
 
+    public void toGameScreen() {
+        titlePanel.setVisible(false);
+        startPanel.setVisible(false);
+
+        infoPanel.setVisible(true);
+        buttonPanel.setVisible(true);
+        gamePanel.setVisible(true);
+
+    }
+
+    public static void toTitleScreen() {
+        titlePanel.setVisible(true);
+        startPanel.setVisible(true);
+
+        infoPanel.setVisible(false);
+        buttonPanel.setVisible(false);
+        gamePanel.setVisible(false);
+
+    }
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+    public void actionPerformed(ActionEvent event) {
+        if (event.getSource() == startButton) {
+            toGameScreen();
+        }
     }
 
 }
