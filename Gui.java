@@ -35,6 +35,10 @@ public class Gui implements ActionListener {
     static String weaponName;
     static String locationName;
 
+    public static void main(String[] args) {
+        gameScreen();
+    }
+
     public static void titleScreen(Game.ActionPerformed actionPerformed) {
 
         // Creating new Frame
@@ -76,7 +80,7 @@ public class Gui implements ActionListener {
         // Sets visability to show
 
         frame.setVisible(true);
-        gameScreen();
+
     }
 
     public static void gameScreen() {
@@ -113,7 +117,7 @@ public class Gui implements ActionListener {
         buttonOne.setBackground(Color.black);
         buttonOne.setForeground(purpleColor);
         buttonOne.setFont(standardFontThree);
-        buttonOne.addActionListener(actionPerformed);
+        // buttonOne.addActionListener(actionPerformed);
         buttonOne.setActionCommand("choiceOne");
         buttonOne.setFocusPainted(false);
 
@@ -121,7 +125,7 @@ public class Gui implements ActionListener {
         buttonTwo.setBackground(Color.black);
         buttonTwo.setForeground(purpleColor);
         buttonTwo.setFont(standardFontThree);
-        buttonTwo.addActionListener(actionPerformed);
+        // buttonTwo.addActionListener(actionPerformed);
         buttonTwo.setActionCommand("choiceTwo");
         buttonTwo.setFocusPainted(false);
 
@@ -129,7 +133,7 @@ public class Gui implements ActionListener {
         buttonThree.setBackground(Color.black);
         buttonThree.setForeground(purpleColor);
         buttonThree.setFont(standardFontThree);
-        buttonThree.addActionListener(actionPerformed);
+        // buttonThree.addActionListener(actionPerformed);
         buttonThree.setActionCommand("choiceThree");
         buttonThree.setFocusPainted(false);
 
@@ -137,7 +141,7 @@ public class Gui implements ActionListener {
         buttonFour.setBackground(Color.black);
         buttonFour.setForeground(purpleColor);
         buttonFour.setFont(standardFontThree);
-        buttonFour.addActionListener(actionPerformed);
+        // buttonFour.addActionListener(actionPerformed);
         buttonFour.setActionCommand("choiceFour");
         buttonFour.setFocusPainted(false);
 
